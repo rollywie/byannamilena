@@ -155,10 +155,17 @@ function renderProductDetail() {
         <h1 class="product-detail__title" id="product-title">${product.name}</h1>
         <p class="product-detail__description">${product.description}</p>
         <p class="product-detail__meta">${product.detail}</p>
+        <div class="product-detail__signup" data-brevo-slot></div>
         <a class="text-link" href="${siteConfig.paths.collection}">Zurueck zur Kollektion</a>
       </section>
     </article>
   `;
+
+  const brevoTemplate = document.querySelector("#brevo-form-template");
+  const brevoSlot = detailRoot.querySelector("[data-brevo-slot]");
+  if (brevoTemplate && brevoSlot) {
+    brevoSlot.append(brevoTemplate.content.cloneNode(true));
+  }
 
   document.title = `${product.name} | by Anna Milena`;
 }

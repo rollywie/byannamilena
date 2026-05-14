@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Produkt | by Anna Milena</title>
+    <link rel="stylesheet" href="https://sibforms.com/forms/end-form/build/sib-styles.css">
     <link rel="stylesheet" href="style.css">
     <script src="script.js" defer></script>
   </head>
@@ -13,5 +14,84 @@
       <div data-product-detail></div>
     </main>
     <footer class="site-footer" data-site-footer></footer>
+    <template id="brevo-form-template">
+      <div class="sib-form brevo-form">
+        <div id="sib-form-container" class="sib-form-container">
+          <div id="error-message" class="sib-form-message-panel">
+            <div class="sib-form-message-panel__text sib-form-message-panel__text--center">
+              <span class="sib-form-message-panel__inner-text">Deine Anmeldung konnte nicht gespeichert werden. Bitte versuche es erneut.</span>
+            </div>
+          </div>
+          <div id="success-message" class="sib-form-message-panel">
+            <div class="sib-form-message-panel__text sib-form-message-panel__text--center">
+              <span class="sib-form-message-panel__inner-text">Deine Anmeldung war erfolgreich.</span>
+            </div>
+          </div>
+          <div id="sib-container" class="sib-container--large sib-container--vertical">
+            <form id="sib-form" method="POST" action="https://2cc276dd.sibforms.com/serve/MUIFADu7Ma1YLZlw_bvPSnJ-9JhEJdNqXdjTosiL_9MSnw3sVKwU01_oRm6p3zsB5RKHc495dEpUzqJQKCWE1vC92CqnhG5z3Suh5vcpEfnhV35_DwzBwJy39Rlrz5q6l0OKbuKwnNUGScxv7dv5JSc28JJVXhmcwWQBXyPKb0luV1ERmOKdzQ925zkZkVPoBR0UJhwcB21LeQFOGQ==" data-type="subscription">
+              <div class="sib-form-block">
+                <div class="sib-text-form-block">
+                  <p>Hier kannst Du deine E-Mail-Adresse eintragen, damit ich dich kontaktieren kann, sobald das Produkt verfügbar ist.</p>
+                </div>
+              </div>
+              <div class="sib-input sib-form-block">
+                <div class="form__entry entry_block">
+                  <div class="form__label-row">
+                    <label class="entry__label" for="EMAIL" data-required="*">Gib deine E-Mail-Adresse ein, um dich anzumelden</label>
+                    <div class="entry__field">
+                      <input class="input" type="text" id="EMAIL" name="EMAIL" autocomplete="email" value="" placeholder="E-Mail-Adresse" data-required="true" required>
+                    </div>
+                  </div>
+                  <label class="entry__error entry__error--primary"></label>
+                  <label class="entry__specification">Gib bitte deine E-Mail-Adresse für die Anmeldung an, z. B. abc@xyz.com.</label>
+                </div>
+              </div>
+              <div class="sib-form__declaration">
+                <p>Wir verwenden Brevo als unsere Marketing-Plattform. Indem du das Formular absendest, erklärst du dich einverstanden, dass die von dir angegebenen persönlichen Informationen an Brevo zur Bearbeitung übertragen werden gemäß der <a href="https://www.brevo.com/de/legal/privacypolicy/" rel="nofollow">Datenschutzerklärung von Brevo</a>.</p>
+              </div>
+              <div class="sib-captcha sib-form-block">
+                <div class="form__entry entry_block">
+                  <div class="form__label-row">
+                    <div class="g-recaptcha sib-visible-recaptcha" id="sib-captcha" data-sitekey="6LdvXeosAAAAAIfTPy4KwW-RjWaaIuAwFpJZLO4C" data-callback="handleCaptchaResponse"></div>
+                  </div>
+                  <label class="entry__error entry__error--primary"></label>
+                </div>
+              </div>
+              <div class="sib-form-block">
+                <button class="sib-form-block__button sib-form-block__button-with-loader" form="sib-form" type="submit">Eintragen</button>
+              </div>
+              <input type="text" name="email_address_check" value="" class="input--hidden">
+              <input type="hidden" name="locale" value="de">
+            </form>
+          </div>
+        </div>
+      </div>
+    </template>
+    <script>
+      function handleCaptchaResponse() {
+        var event = new Event("captchaChange");
+        document.getElementById("sib-captcha").dispatchEvent(event);
+      }
+
+      window.REQUIRED_CODE_ERROR_MESSAGE = "Wähle bitte einen Ländervorwahl aus.";
+      window.LOCALE = "de";
+      window.EMAIL_INVALID_MESSAGE = window.SMS_INVALID_MESSAGE = "Die eingegebenen Informationen sind nicht gültig. Bitte überprüfe das Feldformat und versuche es erneut.";
+      window.REQUIRED_ERROR_MESSAGE = "Dieses Feld darf nicht leer sein. ";
+      window.GENERIC_INVALID_MESSAGE = "Die eingegebenen Informationen sind nicht gültig. Bitte überprüfe das Feldformat und versuche es erneut.";
+      window.INVALID_NUMBER = "Die eingegebenen Informationen sind nicht gültig. Bitte überprüfe das Feldformat und versuche es erneut.";
+      window.INVALID_DATE = "Bitte gib ein gültiges Datum ein";
+      window.REQUIRED_MULTISELECT_MESSAGE = "Wähle bitte mindestens eine Option aus";
+      window.translation = {
+        common: {
+          selectedList: "{quantity} Liste ausgewählt",
+          selectedLists: "{quantity} Listen ausgewählt",
+          selectedOption: "{quantity} ausgewählt",
+          selectedOptions: "{quantity} ausgewählt"
+        }
+      };
+      var AUTOHIDE = Boolean(0);
+    </script>
+    <script defer src="https://sibforms.com/forms/end-form/build/main.js"></script>
+    <script defer src="https://www.google.com/recaptcha/api.js?hl=de"></script>
   </body>
 </html>
