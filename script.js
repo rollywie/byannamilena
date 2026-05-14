@@ -8,7 +8,8 @@ const siteConfig = {
     home: "index.html",
     collection: "collection.html",
     product: "product.html",
-    imprint: "impressum.html"
+    imprint: "impressum.html",
+    privacy: "datenschutz.html"
   },
   navigation: [
     { page: "collection", label: "Kollektion", href: "collection.html" }
@@ -65,7 +66,8 @@ const siteConfig = {
     }
   ],
   footerLinks: [
-    { page: "imprint", label: "Impressum", href: "impressum.html" }
+    { page: "imprint", label: "Impressum", href: "impressum.html" },
+    { page: "privacy", label: "Datenschutz", href: "datenschutz.html" }
   ]
 };
 
