@@ -146,7 +146,6 @@ function renderProductDetail() {
 
   detailRoot.innerHTML = `
     <article class="product-detail">
-      <a class="back-link" href="${siteConfig.paths.collection}">Kollektion</a>
       <div class="product-detail__media">
         <img class="product-detail__image" src="${product.image}" alt="${product.name}" decoding="async">
       </div>
@@ -156,7 +155,7 @@ function renderProductDetail() {
         <p class="product-detail__description">${product.description}</p>
         <p class="product-detail__meta">${product.detail}</p>
         <div class="product-detail__signup" data-brevo-slot></div>
-        <a class="text-link" href="${siteConfig.paths.collection}">Zurueck zur Kollektion</a>
+        <a class="text-link" href="${siteConfig.paths.collection}">Zurück zur Kollektion</a>
       </section>
     </article>
   `;
