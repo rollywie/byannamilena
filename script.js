@@ -20,37 +20,51 @@ const siteConfig = {
     {
       id: "structured-gold-skirt",
       name: "Structured gold skirt",
-      image: "assets/products/product-01.jpg"
+      image: "assets/products/product-01.jpg",
+      description: "Ein ruhiger Entwurf mit klarer Silhouette und feinem Volumen.",
+      detail: "Limitierte Fertigung. Weitere Details folgen."
     },
     {
       id: "silver-embroidered-skirt",
       name: "Silver embroidered skirt",
-      image: "assets/products/product-02.jpg"
+      image: "assets/products/product-02.jpg",
+      description: "Leicht, strukturiert und fuer besondere Momente gedacht.",
+      detail: "Limitierte Fertigung. Weitere Details folgen."
     },
     {
       id: "floral-couture-skirt",
       name: "Floral couture skirt",
-      image: "assets/products/product-03.jpg"
+      image: "assets/products/product-03.jpg",
+      description: "Ein femininer Rock mit praesenter Form und feiner Textur.",
+      detail: "Limitierte Fertigung. Weitere Details folgen."
     },
     {
       id: "emerald-jacquard-skirt",
       name: "Emerald jacquard skirt",
-      image: "assets/products/product-04.jpg"
+      image: "assets/products/product-04.jpg",
+      description: "Zeitloses Volumen, reduziert inszeniert.",
+      detail: "Limitierte Fertigung. Weitere Details folgen."
     },
     {
       id: "rose-volume-skirt",
       name: "Rose volume skirt",
-      image: "assets/products/product-05.jpg"
+      image: "assets/products/product-05.jpg",
+      description: "Ein markantes Einzelstueck mit weicher Bewegung.",
+      detail: "Limitierte Fertigung. Weitere Details folgen."
     },
     {
       id: "black-evening-skirt",
       name: "Black evening skirt",
-      image: "assets/products/product-06.jpg"
+      image: "assets/products/product-06.jpg",
+      description: "Schlicht im Aufbau, praezise in der Wirkung.",
+      detail: "Limitierte Fertigung. Weitere Details folgen."
     },
     {
       id: "cream-atelier-skirt",
       name: "Cream atelier skirt",
-      image: "assets/products/product-07.jpg"
+      image: "assets/products/product-07.jpg",
+      description: "Ein klares Statement mit ruhiger Oberflaeche.",
+      detail: "Limitierte Fertigung. Weitere Details folgen."
     }
   ],
   footerLinks: [
@@ -118,9 +132,41 @@ function renderCollection() {
     .join("");
 }
 
+function getCurrentProduct() {
+  const params = new URLSearchParams(window.location.search);
+  const productId = params.get("product");
+  return siteConfig.products.find((product) => product.id === productId) || siteConfig.products[0];
+}
+
+function renderProductDetail() {
+  const detailRoot = document.querySelector("[data-product-detail]");
+  if (!detailRoot) return;
+
+  const product = getCurrentProduct();
+
+  detailRoot.innerHTML = `
+    <article class="product-detail">
+      <a class="back-link" href="${siteConfig.paths.collection}">Kollektion</a>
+      <div class="product-detail__media">
+        <img class="product-detail__image" src="${product.image}" alt="${product.name}" decoding="async">
+      </div>
+      <section class="product-detail__content" aria-labelledby="product-title">
+        <p class="product-detail__eyebrow">Skirt</p>
+        <h1 class="product-detail__title" id="product-title">${product.name}</h1>
+        <p class="product-detail__description">${product.description}</p>
+        <p class="product-detail__meta">${product.detail}</p>
+        <a class="text-link" href="${siteConfig.paths.collection}">Zurueck zur Kollektion</a>
+      </section>
+    </article>
+  `;
+
+  document.title = `${product.name} | by Anna Milena`;
+}
+
 renderHeader();
 renderFooter();
 renderCollection();
+renderProductDetail();
 
 const menuToggle = document.querySelector(".menu-toggle");
 const siteNav = document.querySelector(".site-nav");
