@@ -11,10 +11,7 @@ const siteConfig = {
     imprint: "impressum.html"
   },
   navigation: [
-    { page: "home", label: "Start", href: "index.html" },
-    { page: "collection", label: "Kollektion", href: "collection.html" },
-    { page: "product", label: "Produkt", href: "product.html" },
-    { page: "imprint", label: "Impressum", href: "impressum.html" }
+    { page: "collection", label: "Kollektion", href: "collection.html" }
   ],
   products: [
     {
@@ -90,11 +87,12 @@ function renderHeader() {
       <span class="menu-toggle__line"></span>
       <span class="menu-toggle__line"></span>
     </button>
+    <nav class="site-nav site-nav--desktop" aria-label="Hauptnavigation">${navLinks}</nav>
     <a class="brand-link" href="${siteConfig.paths.home}" aria-label="${siteConfig.brandName}">
       <img class="brand-logo" src="${siteConfig.logo.src}" alt="${siteConfig.logo.alt}">
     </a>
     <div class="header-spacer" aria-hidden="true"></div>
-    <nav class="site-nav" id="site-menu" aria-label="Hauptnavigation">${navLinks}</nav>
+    <nav class="site-nav site-nav--mobile" id="site-menu" aria-label="Hauptnavigation">${navLinks}</nav>
   `;
 }
 
@@ -169,7 +167,7 @@ renderCollection();
 renderProductDetail();
 
 const menuToggle = document.querySelector(".menu-toggle");
-const siteNav = document.querySelector(".site-nav");
+const siteNav = document.querySelector(".site-nav--mobile");
 
 if (menuToggle && siteNav) {
   menuToggle.addEventListener("click", () => {
