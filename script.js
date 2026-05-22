@@ -12,57 +12,58 @@ const siteConfig = {
     privacy: "datenschutz.html"
   },
   navigation: [
-    { page: "collection", label: "Kollektion", href: "collection.html" }
+    { page: "collection", label: "KOLLEKTION", href: "collection.html" },
+    { page: "about", label: "ABOUT ME", href: "index.html#about-me" }
   ],
   products: [
     {
-      id: "structured-gold-skirt",
-      name: "Structured gold skirt",
-      image: "assets/products/product-01.jpg",
-      description: "Ein ruhiger Entwurf mit klarer Silhouette und feinem Volumen.",
-      detail: "Limitierte Fertigung. Weitere Details folgen."
+      id: "hanni",
+      name: "Hanni",
+      gallery: ["assets/products/hanni/01.jpg"],
+      description: "Jacquard skirt with an oversized floral pattern in red and cream. Designed to sit at the waist and fall to mid-calf, featuring side pockets and a back closure with a zipper and button.",
+      detail: "Outer fabric: 100% polyester, lining: 100% viscose. Dry clean only."
     },
     {
-      id: "silver-embroidered-skirt",
-      name: "Silver embroidered skirt",
-      image: "assets/products/product-02.jpg",
-      description: "Leicht, strukturiert und fuer besondere Momente gedacht.",
-      detail: "Limitierte Fertigung. Weitere Details folgen."
+      id: "amara",
+      name: "Amara",
+      gallery: ["assets/products/amara/01.jpg"],
+      description: "Jacquard skirt in soft champagne with a subtle textured gold pattern. Designed to sit at the waist and fall to mid-calf, featuring side pockets and a back closure with a zipper and button.",
+      detail: "Outer fabric: 100% polyester, lining: 100% viscose. Dry clean only."
     },
     {
-      id: "floral-couture-skirt",
-      name: "Floral couture skirt",
-      image: "assets/products/product-03.jpg",
-      description: "Ein femininer Rock mit praesenter Form und feiner Textur.",
-      detail: "Limitierte Fertigung. Weitere Details folgen."
+      id: "elli",
+      name: "Elli",
+      gallery: ["assets/products/elli/01.jpg"],
+      description: "Jacquard skirt with a light blue and cream floral pattern. Designed to sit at the waist and fall to mid-calf, featuring side pockets and a back closure with a zipper and button.",
+      detail: "Outer fabric: 100% polyester, lining: 100% viscose. Dry clean only."
     },
     {
-      id: "emerald-jacquard-skirt",
-      name: "Emerald jacquard skirt",
-      image: "assets/products/product-04.jpg",
-      description: "Zeitloses Volumen, reduziert inszeniert.",
-      detail: "Limitierte Fertigung. Weitere Details folgen."
+      id: "liv",
+      name: "Liv",
+      gallery: ["assets/products/liv/01.jpg"],
+      description: "Jacquard skirt with a delicate floral pattern in soft blue and ivory. Designed to sit at the waist and fall to mid-calf, featuring side pockets and a back closure with a zipper and button.",
+      detail: "Outer fabric: 100% polyester, lining: 100% viscose. Dry clean only."
     },
     {
-      id: "rose-volume-skirt",
-      name: "Rose volume skirt",
-      image: "assets/products/product-05.jpg",
-      description: "Ein markantes Einzelstueck mit weicher Bewegung.",
-      detail: "Limitierte Fertigung. Weitere Details folgen."
+      id: "malou",
+      name: "Malou",
+      gallery: ["assets/products/malou/01.jpg"],
+      description: "Jacquard skirt with an ornamental pattern in emerald green and gold. Designed to sit at the waist and fall to mid-calf, featuring side pockets and a back closure with a zipper and button.",
+      detail: "Outer fabric: 100% polyester, lining: 100% viscose. Dry clean only."
     },
     {
-      id: "black-evening-skirt",
-      name: "Black evening skirt",
-      image: "assets/products/product-06.jpg",
-      description: "Schlicht im Aufbau, praezise in der Wirkung.",
-      detail: "Limitierte Fertigung. Weitere Details folgen."
+      id: "nola",
+      name: "Nola",
+      gallery: ["assets/products/nola/01.jpg"],
+      description: "Jacquard skirt in soft ivory with a subtle textured floral pattern in silver. Designed to sit at the waist and fall to mid-calf, featuring side pockets and a back closure with a zipper and button.",
+      detail: "Outer fabric: 100% polyester, lining: 100% viscose. Dry clean only."
     },
     {
-      id: "cream-atelier-skirt",
-      name: "Cream atelier skirt",
-      image: "assets/products/product-07.jpg",
-      description: "Ein klares Statement mit ruhiger Oberflaeche.",
-      detail: "Limitierte Fertigung. Weitere Details folgen."
+      id: "juna",
+      name: "Juna",
+      gallery: ["assets/products/juna/01.jpg"],
+      description: "Jacquard skirt in deep navy with an abstract gold pattern. Designed to sit at the waist and fall to mid-calf, featuring side pockets and a back closure with a zipper and button.",
+      detail: "Outer fabric: 100% polyester, lining: 100% viscose. Dry clean only."
     }
   ],
   footerLinks: [
@@ -118,11 +119,12 @@ function renderCollection() {
   grid.innerHTML = siteConfig.products
     .map((product) => {
       const href = `${siteConfig.paths.product}?product=${product.id}`;
+      const coverImage = getProductCover(product);
       return `
         <article class="product-card">
           <a class="product-card__link" href="${href}" aria-label="${product.name} ansehen">
             <span class="product-card__media">
-              <img class="product-card__image" src="${product.image}" alt="${product.name}" loading="lazy" decoding="async">
+              <img class="product-card__image" src="${coverImage}" alt="${product.name}" loading="lazy" decoding="async">
             </span>
             <span class="product-card__name">${product.name}</span>
           </a>
@@ -130,6 +132,10 @@ function renderCollection() {
       `;
     })
     .join("");
+}
+
+function getProductCover(product) {
+  return product.gallery[0];
 }
 
 function getCurrentProduct() {
@@ -143,11 +149,27 @@ function renderProductDetail() {
   if (!detailRoot) return;
 
   const product = getCurrentProduct();
+  const activeImage = getProductCover(product);
+  const thumbnails = product.gallery
+    .map((image, index) => {
+      const active = index === 0 ? ' aria-current="true"' : "";
+      return `
+        <button class="product-gallery__thumb" type="button" data-gallery-thumb="${image}" aria-label="Bild ${index + 1} von ${product.name} anzeigen"${active}>
+          <img src="${image}" alt="" loading="lazy" decoding="async">
+        </button>
+      `;
+    })
+    .join("");
 
   detailRoot.innerHTML = `
     <article class="product-detail">
-      <div class="product-detail__media">
-        <img class="product-detail__image" src="${product.image}" alt="${product.name}" decoding="async">
+      <div class="product-gallery" data-product-gallery>
+        <div class="product-detail__media">
+          <img class="product-detail__image" src="${activeImage}" alt="${product.name}" decoding="async" data-gallery-main>
+        </div>
+        <div class="product-gallery__thumbs" aria-label="Produktbilder">
+          ${thumbnails}
+        </div>
       </div>
       <section class="product-detail__content" aria-labelledby="product-title">
         <p class="product-detail__eyebrow">Skirt</p>
@@ -166,13 +188,52 @@ function renderProductDetail() {
     brevoSlot.append(brevoTemplate.content.cloneNode(true));
   }
 
+  initProductGallery(detailRoot);
   document.title = `${product.name} | by Anna Milena`;
+}
+
+function initProductGallery(root) {
+  const mainImage = root.querySelector("[data-gallery-main]");
+  const thumbnails = root.querySelectorAll("[data-gallery-thumb]");
+  if (!mainImage || thumbnails.length === 0) return;
+
+  thumbnails.forEach((thumbnail) => {
+    thumbnail.addEventListener("click", () => {
+      const nextImage = thumbnail.dataset.galleryThumb;
+      if (!nextImage) return;
+
+      mainImage.src = nextImage;
+      thumbnails.forEach((item) => item.removeAttribute("aria-current"));
+      thumbnail.setAttribute("aria-current", "true");
+    });
+  });
+}
+
+function initAboutLanguageToggle() {
+  const toggle = document.querySelector("[data-language-toggle]");
+  const texts = document.querySelectorAll("[data-about-text]");
+  if (!toggle || texts.length === 0) return;
+
+  toggle.addEventListener("click", () => {
+    const currentLanguage = toggle.dataset.currentLanguage || "en";
+    const nextLanguage = currentLanguage === "en" ? "de" : "en";
+
+    texts.forEach((text) => {
+      const isActive = text.dataset.aboutText === nextLanguage;
+      text.hidden = !isActive;
+      text.classList.toggle("is-active", isActive);
+    });
+
+    toggle.dataset.currentLanguage = nextLanguage;
+    toggle.textContent = nextLanguage === "en" ? "Deutsch" : "English";
+  });
 }
 
 renderHeader();
 renderFooter();
 renderCollection();
 renderProductDetail();
+initAboutLanguageToggle();
 
 const menuToggle = document.querySelector(".menu-toggle");
 const siteNav = document.querySelector(".site-nav--mobile");
