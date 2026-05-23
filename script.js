@@ -19,49 +19,87 @@ const siteConfig = {
     {
       id: "hanni",
       name: "Hanni",
-      gallery: ["assets/products/hanni/01.jpg"],
+      gallery: [
+        "assets/products/hanni/01.jpg",
+        "assets/products/hanni/02.jpg",
+        "assets/products/hanni/03.jpg",
+        "assets/products/hanni/04.jpg"
+      ],
       description: "Jacquard skirt with an oversized floral pattern in red and cream. Designed to sit at the waist and fall to mid-calf, featuring side pockets and a back closure with a zipper and button.",
       detail: "Outer fabric: 100% polyester, lining: 100% viscose. Dry clean only."
     },
     {
       id: "amara",
       name: "Amara",
-      gallery: ["assets/products/amara/01.jpg"],
+      gallery: [
+        "assets/products/amara/01.jpg",
+        "assets/products/amara/02.jpg",
+        "assets/products/amara/03.jpg",
+        "assets/products/amara/04.jpg",
+        "assets/products/amara/05.jpg"
+      ],
       description: "Jacquard skirt in soft champagne with a subtle textured gold pattern. Designed to sit at the waist and fall to mid-calf, featuring side pockets and a back closure with a zipper and button.",
       detail: "Outer fabric: 100% polyester, lining: 100% viscose. Dry clean only."
     },
     {
       id: "elli",
       name: "Elli",
-      gallery: ["assets/products/elli/01.jpg"],
+      gallery: [
+        "assets/products/elli/01.jpg",
+        "assets/products/elli/02.jpg"
+      ],
       description: "Jacquard skirt with a light blue and cream floral pattern. Designed to sit at the waist and fall to mid-calf, featuring side pockets and a back closure with a zipper and button.",
       detail: "Outer fabric: 100% polyester, lining: 100% viscose. Dry clean only."
     },
     {
       id: "liv",
       name: "Liv",
-      gallery: ["assets/products/liv/01.jpg"],
+      gallery: [
+        "assets/products/liv/01.jpg",
+        "assets/products/liv/02.jpg",
+        "assets/products/liv/03.jpg",
+        "assets/products/liv/04.jpg",
+        "assets/products/liv/05.jpg",
+        "assets/products/liv/06.jpg"
+      ],
       description: "Jacquard skirt with a delicate floral pattern in soft blue and ivory. Designed to sit at the waist and fall to mid-calf, featuring side pockets and a back closure with a zipper and button.",
       detail: "Outer fabric: 100% polyester, lining: 100% viscose. Dry clean only."
     },
     {
       id: "malou",
       name: "Malou",
-      gallery: ["assets/products/malou/01.jpg"],
+      gallery: [
+        "assets/products/malou/01.jpg",
+        "assets/products/malou/02.jpg",
+        "assets/products/malou/03.jpg",
+        "assets/products/malou/04.jpg",
+        "assets/products/malou/05.jpg"
+      ],
       description: "Jacquard skirt with an ornamental pattern in emerald green and gold. Designed to sit at the waist and fall to mid-calf, featuring side pockets and a back closure with a zipper and button.",
       detail: "Outer fabric: 100% polyester, lining: 100% viscose. Dry clean only."
     },
     {
       id: "nola",
       name: "Nola",
-      gallery: ["assets/products/nola/01.jpg"],
+      gallery: [
+        "assets/products/nola/01.jpg",
+        "assets/products/nola/02.jpg",
+        "assets/products/nola/03.jpg",
+        "assets/products/nola/04.jpg",
+        "assets/products/nola/05.jpg"
+      ],
       description: "Jacquard skirt in soft ivory with a subtle textured floral pattern in silver. Designed to sit at the waist and fall to mid-calf, featuring side pockets and a back closure with a zipper and button.",
       detail: "Outer fabric: 100% polyester, lining: 100% viscose. Dry clean only."
     },
     {
       id: "juna",
       name: "Juna",
-      gallery: ["assets/products/juna/01.jpg"],
+      gallery: [
+        "assets/products/juna/01.jpg",
+        "assets/products/juna/02.jpg",
+        "assets/products/juna/03.jpg",
+        "assets/products/juna/04.jpg"
+      ],
       description: "Jacquard skirt in deep navy with an abstract gold pattern. Designed to sit at the waist and fall to mid-calf, featuring side pockets and a back closure with a zipper and button.",
       detail: "Outer fabric: 100% polyester, lining: 100% viscose. Dry clean only."
     }
