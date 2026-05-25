@@ -182,12 +182,54 @@ function getCurrentProduct() {
   return siteConfig.products.find((product) => product.id === productId) || siteConfig.products[0];
 }
 
+function shouldShowSignupConfirmation() {
+  const params = new URLSearchParams(window.location.search);
+  return (
+    params.get("anmeldung") === "bestaetigen" ||
+    params.get("signup") === "confirm" ||
+    params.get("confirm") === "1"
+  );
+}
+
+function renderSignupConfirmationBanner() {
+  if (!shouldShowSignupConfirmation()) return "";
+
+  return getSignupConfirmationBannerMarkup();
+}
+
+function getSignupConfirmationBannerMarkup() {
+  return `
+    <aside class="signup-confirmation" role="status" aria-labelledby="signup-confirmation-title">
+      <h2 class="signup-confirmation__title" id="signup-confirmation-title">Bestätige deine Anmeldung</h2>
+      <p>Wir müssen deine E-Mail-Adresse bestätigen, um den Registrierungsprozess abzuschließen.</p>
+      <p>Klicke bitte auf den Link in der E-Mail, die wir dir gerade gesendet haben.</p>
+      <p>Du wirst nicht registriert, wenn du nicht auf den Bestätigungslink klickst.</p>
+    </aside>
+  `;
+}
+
+function getSignupConfirmationUrl() {
+  const url = new URL(window.location.href);
+  url.searchParams.set("anmeldung", "bestaetigen");
+  return url;
+}
+
+function showSignupConfirmation() {
+  const productContent = document.querySelector(".product-detail__content");
+  if (!productContent || productContent.querySelector(".signup-confirmation")) return;
+
+  productContent.insertAdjacentHTML("afterbegin", getSignupConfirmationBannerMarkup());
+  window.history.pushState({}, "", getSignupConfirmationUrl());
+  document.title = "Bestätige deine Anmeldung | by Anna Milena";
+}
+
 function renderProductDetail() {
   const detailRoot = document.querySelector("[data-product-detail]");
   if (!detailRoot) return;
 
   const product = getCurrentProduct();
   const activeImage = getProductCover(product);
+  const signupConfirmationBanner = renderSignupConfirmationBanner();
   const thumbnails = product.gallery
     .map((image, index) => {
       const active = index === 0 ? ' aria-current="true"' : "";
@@ -210,6 +252,7 @@ function renderProductDetail() {
         </div>
       </div>
       <section class="product-detail__content" aria-labelledby="product-title">
+        ${signupConfirmationBanner}
         <p class="product-detail__eyebrow">Skirt</p>
         <h1 class="product-detail__title" id="product-title">${product.name}</h1>
         <p class="product-detail__description">${product.description}</p>
@@ -227,7 +270,20 @@ function renderProductDetail() {
   }
 
   initProductGallery(detailRoot);
-  document.title = `${product.name} | by Anna Milena`;
+  initSignupConfirmationTrigger(detailRoot);
+  document.title = shouldShowSignupConfirmation()
+    ? `Bestätige deine Anmeldung | by Anna Milena`
+    : `${product.name} | by Anna Milena`;
+}
+
+function initSignupConfirmationTrigger(root) {
+  const form = root.querySelector("#sib-form");
+  if (!form) return;
+
+  form.addEventListener("submit", () => {
+    if (!form.checkValidity()) return;
+    showSignupConfirmation();
+  });
 }
 
 function initProductGallery(root) {

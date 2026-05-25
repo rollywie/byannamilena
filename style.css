@@ -457,6 +457,28 @@ a {
   max-width: var(--detail-content-max-width);
 }
 
+.signup-confirmation {
+  display: grid;
+  gap: 10px;
+  padding: 18px;
+  border: 1px solid var(--color-line);
+  background: var(--color-surface);
+}
+
+.signup-confirmation__title {
+  margin: 0 0 2px;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1.25;
+}
+
+.signup-confirmation p {
+  margin: 0;
+  color: var(--color-muted);
+  font-size: 14px;
+  line-height: 1.5;
+}
+
 .product-detail__eyebrow,
 .product-detail__description,
 .product-detail__meta {
