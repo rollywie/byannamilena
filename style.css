@@ -49,6 +49,12 @@
   --transition-fast: 160ms ease;
 }
 
+@supports (height: 100svh) {
+  :root {
+    --home-hero-height-mobile: calc(100svh - var(--header-height-mobile));
+  }
+}
+
 * {
   box-sizing: border-box;
 }
@@ -246,7 +252,8 @@ a {
 .home-hero__link {
   position: absolute;
   left: 50%;
-  bottom: 42px;
+  bottom: 96px;
+  bottom: clamp(96px, 14svh, 132px);
   color: #ffffff;
   font-size: 15px;
   line-height: 1;
